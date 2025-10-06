@@ -38,10 +38,10 @@ async def main(gp) -> None:
 if __name__ == "__main__":
     print('here1')
     def af():
-        asyncio.run(main('92693'))
+        asyncio.run(main('14032'))
 
     def ff():
-        asyncio.run(main('9269'))
+        asyncio.run(main('05420'))
 
     threading.Thread(target=af).start()
     print('here2')
