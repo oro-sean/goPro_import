@@ -30,7 +30,7 @@ async def main(gp, del_all, cameraName, export_path) -> None:
     async with WiredGoPro(gp) as gopro:
 
         if del_all:
-            response = await gopro.http_command.delete_all()
+            response = await gopro.http_command.delete_all_media()
             print("Delete All for "+str(cameraName)+" Finished with Error Code - "+str(response.status))
 
         response = await gopro.http_command.set_date_time(date_time=datetime.now())
@@ -91,13 +91,13 @@ async def main(gp, del_all, cameraName, export_path) -> None:
 
 
 if __name__ == "__main__":
-    #cameraName = ['portMain', 'stbMain', 'jib', 'aftFacing', 'fwdFacing', 'transom']
-    cameraName = ['portMain', 'aftFacing']
-    #serialNumbers = ['14032', '09228', '09121', '09185', '05420', '38646']
-    serialNumbers = ['14032', '09185']
-    #format = [True, False, False, True, True, True]
-    format = [True, True]
-    export_folder_path = '/Volumes/veerignSSD2'
+    cameraName = ['portMain', 'stbMain', 'jib', 'aftFacing', 'fwdFacing', 'transom']
+    #cameraName = ['portMain', 'aftFacing']
+    serialNumbers = ['14032', '09228', '09121', '09185', '05420', '38646']
+    #serialNumbers = ['14032', '09185']
+    format = [True, False, False, True, True, True]
+    #format = [True, True]
+    export_folder_path = '/media/camcontrol/veerignSSD2'
     threads = []
     def function_to_thread(params):
         asyncio.run(main(params[0], params[1], params[2], params[3]))
