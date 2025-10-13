@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "sleep for 30"
+echo "Launching goPro starter"
 
 sleep 30
 
