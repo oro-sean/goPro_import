@@ -7,10 +7,12 @@ from open_gopro import WiredGoPro
 import open_gopro.models.constants as constants
 from open_gopro import models
 from open_gopro.domain.exceptions import FailedToFindDevice, ResponseTimeout
-from open_gopro.util import setup_logging
+#from open_gopro.util import setup_logging
+
+
 import veeringVideo
 
-log = setup_logging(__name__, "log.txt")
+#log = setup_logging(__name__, "log.txt")
 
 async def main(gp, del_all, cameraName, export_path) -> None:
     found = False
@@ -25,22 +27,22 @@ async def main(gp, del_all, cameraName, export_path) -> None:
             await asyncio.sleep(120)
 
     print(str(cameraName) + " is now online")
-    log.info(cameraName + " is now online")
+    #log.info(cameraName + " is now online")
 
     async with WiredGoPro(gp) as gopro:
 
         if del_all:
             response = await gopro.http_command.delete_all_media()
             print("Delete All for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
-            log.info("Delete All for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
+            #log.info("Delete All for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
 
         response = await gopro.http_command.set_date_time(date_time=datetime.now())
         print("Time Set for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
-        log.info("Time Set for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
+        #log.info("Time Set for "+str(cameraName)+" Finished with Response Code - "+str(response.status))
 
         response = await gopro.http_command.set_shutter(shutter=constants.Toggle.ENABLE)
         print(str(cameraName)+" Has started recording withResponse Code "+str(response.status))
-        log.info("Has started recording withResponse Code "+str(response.status))
+        #log.info("Has started recording withResponse Code "+str(response.status))
 
         state = True
         while state:
@@ -52,10 +54,10 @@ async def main(gp, del_all, cameraName, export_path) -> None:
                 battery = response.data[constants.StatusId.INTERNAL_BATTERY_PERCENTAGE]
                 sdCard = response.data[constants.StatusId.SD_CARD_REMAINING]
                 temp = response.data[constants.StatusId.TEMPERATURE]
-                log.info(str(cameraName)+" - "+str(battery)+" - "+str(sdCard)+" - "+str(temp))
+                #log.info(str(cameraName)+" - "+str(battery)+" - "+str(sdCard)+" - "+str(temp))
 
         print(str(cameraName)+" Has stopped recording - Starting download")
-        log.info(str(cameraName)+"Has stopped recording - Starting download")
+        #log.info(str(cameraName)+"Has stopped recording - Starting download")
 
         startTime = time.time()
         response = await (gopro.http_command).get_media_list()
