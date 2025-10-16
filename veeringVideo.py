@@ -79,7 +79,3 @@ class Video_TimeStamping:
         self.SortFiles()
         self.GetTimeStamps()
         self.Write_CSV()
-
-
-
-#%%

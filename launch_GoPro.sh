@@ -4,18 +4,18 @@ echo "sleep for 30"
 
 sleep 30
 
-echo "here"
+echo "setting conda"
 
 source /home/camcontrol/anaconda3/etc/profile.d/conda.sh
 
-echo "here 2"
+echo "activate conda env"
 
 conda activate goPro_import
 
-echo "here 3"
+echo "change working directory"
 
 cd /home/camcontrol/goPro_import
 
-echo "here 4"
+echo "launch go_pro start"
 
 python goPro_start.py
